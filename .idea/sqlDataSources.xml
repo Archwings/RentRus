@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="f0622693-4907-4988-b0f7-f27189933faf" />
+          <option name="name" value="CarsRUs" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/../../Our Project/CarsRUs.sql" />
+            </array>
+          </option>
+          <option name="group" value="RentalService" />
+        </State>
+      </list>
+    </option>
+  </component>
+</project>

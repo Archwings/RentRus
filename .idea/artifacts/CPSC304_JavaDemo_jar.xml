@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CPSC304-JavaDemo:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/CPSC304_JavaDemo_jar</output-path>
+    <root id="archive" name="CPSC304-JavaDemo.jar">
+      <element id="module-output" name="CPSC304-JavaDemo" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/resources/ojdbc8.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
