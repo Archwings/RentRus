@@ -1,0 +1,130 @@
+create table vehicleType(
+vtname varchar2(20) PRIMARY KEY,
+features varchar2(50),
+wrate number(7,2),
+drate number(7,2),
+hrate number(7,2),
+);
+
+create table vehicle(
+license varchar2(10) PRIMARY KEY,
+make varchar2(20),
+model varchar2(20),
+year varchar2(4),
+color varchar2(10),
+odometer int,
+status varchar2(11),
+branch varchar2(20),
+vtname varchar2(20) not null,
+FOREIGN KEY(vtname) REFERENCES vehicleType
+);
+
+create table Reservation(
+confNo int PRIMARY KEY,
+license varchar2(10),
+cellphone varchar2(13) not null,
+dlicense varchar2(12) not null,
+fromDate timestamp,
+toDate timestamp,
+FOREIGN KEY (license) REFERENCES vehicle,
+FOREIGN KEY (dlicense) REFERENCES customer,
+FOREIGN KEY (cellphone) REFERENCES customer
+);
+
+create table Rentals(
+rid integer PRIMARY KEY,
+license varchar2(10),
+dlicense varchar2(12),
+fromDate timestamp,
+toDate timestamp,
+odometer int,
+cardName varchar2(40),
+cardNo varchar2(16),
+expDate date,
+confNo int,
+FOREIGN KEY (license) REFERENCES Vehicle,
+FOREIGN KEY (dlicense) REFERENCEES Customer,
+FOREIGN KEY (confNo) REFERENCES Reservation
+);
+
+create table Customer(
+dlicense varchar2(12) PRIMARY KEY,
+cellphone varchar2(13),
+name varchar2(30),
+address varchar2(40)
+);
+
+create table Return(
+rid integer PRIMARY KEY,
+date timestamp,
+odometer integer,
+fulltank varchar2(1),
+value number(7,2)
+);
+
+
+
+
+insert into vehicle
+values(‘191129’, ‘BMW’, ‘3 series’, ‘2020’, ’brown’, ‘1000’, ‘available’, ‘vancouver’, ‘SUV’);
+insert into vehicle
+values(‘1B2B2D’, ‘Honda’, ‘civic’, ‘1982’, ’black’, ‘200000’, ‘available’, ‘vancouver’, ‘Truck’);
+insert into vehicle
+values(‘1B2B2K’, ‘Honda’, ‘civic’, ‘1982’, ’black’, ‘200000’, ‘available’, ‘vancouver’, ‘compact’);
+insert into vehicle
+values(‘1233FE’, ‘Honda’, ‘civic’, ‘1984’, ’black’, ‘200000’, ‘rented’, ‘toronto’, ‘Wagon’);
+	--this one is reseved and rented
+insert into vehicle values(‘14123D’, ‘Honda’, ‘civic’, ‘2000’, ’yellow’, ‘203200’, ‘not available’, ‘toronto’, ‘Electric’);
+	-- this one is reserved and rented
+insert into vehicle values(‘141321D’, ‘Mercedes’, ‘C-Class’, ‘2000’, ’blue’, ‘203200’, ‘rented’, ‘vancouver’, ‘Sedan’);
+	--this one is in reserved
+insert into vehicle values(‘12332FE’, ‘Honda’, ‘civic’, ‘1994’, ’black’, ‘200000’, ‘not available’, ‘toronto’, ‘Wagon’);
+
+
+insert into vehicleType
+values(‘Electric’, ‘sunroof’, 200, 30, 10)
+insert into vehicleType
+values(‘SUV’,‘sport’ ,250, 40, 10);
+insert into vehicleType
+values(‘Truck’,’Cargo Space’, 400, 60, 20);
+insert into vehicleType
+values(‘Wagon’,null, 350, 50, 20);
+insert into vehicleType
+values(‘Sedan’,null, 200, 60, 20);
+
+--for vehicle values(‘12332FE’, ‘Honda’, ‘civic’, ‘1994’, ’black’, ‘200000’, ‘not available’, ‘toronto’, ‘Wagon’);
+--for customer values(‘34rofp3’, ‘1274340923’, ‘tom schmidt’, ‘4129 vine street, vancouver’);
+insert into Reservation values(‘12345’, ‘Wagon’, ‘1274340923’, ‘34rofp3’, to_timestamp('2015/04/12 12:09', 'YYYY/MM/DD HH24 MI'), to_timestamp('2015/04/13 12:09', 'YYYY/MM/DD HH24 MI'));
+
+--Used in Rentals
+--vehicle values(‘141321D’, ‘Mercedes’, ‘C-Class’, ‘2000’, ’blue’, ‘203200’, ‘rented’, ‘vancouver’, ‘Sedan’);
+--customer values(‘0021900’, ‘778 231 2312’, ‘Yeong Oh’, ‘2345 Pog Street, Vancouver’);
+insert into Reservation values(‘32345’, ‘Sedan’, ‘778 231 2312’, ‘0021900’, to_timestamp('2015/05/12 12:09', 'YYYY/MM/DD HH24 MI'), to_timestamp('2015/06/13 23:09', 'YYYY/MM/DD HH24 MI'));
+
+--Used in Rentals
+--for vehicle values(‘14123D’, ‘Honda’, ‘civic’, ‘2000’, ’yellow’, ‘203200’, ‘not available’, ‘toronto’, ‘Electric’);
+--for customer values(‘34rrere’, ‘1274343443’, ‘mark schmidt’, ‘4345 vine street, vancouver’)
+insert into Reservation values(‘22345’, ‘Electric’, ‘1274340923’, ‘34rrere’, to_timestamp('2015/04/13 12:09', 'YYYY/MM/DD HH24 MI'), to_timestamp('2015/04/14 12:09', 'YYYY/MM/DD HH24 MI'));
+
+
+	--RENTED CARS
+--for vehicle values(‘14123D’, ‘Honda’, ‘civic’, ‘2000’, ’yellow’, ‘203200’, ‘not available’, ‘toronto’, ‘Electric’);
+--for customer values(‘34rrere’, ‘1274343443’, ‘mark schmidt’, ‘4345 vine street, vancouver’)
+--for reservation values(‘22345’, ‘Electric’, ‘1274340923’, ‘34rrere’, to_timestamp('2015/04/13 12:09', 'YYYY/MM/DD HH24 MI'), to_timestamp('2015/04/14 12:09', 'YYYY/MM/DD HH24 MI'));
+insert into, Rentals values(‘101’, ‘14123D’, ‘34rofp3’, to_timestamp('2015/04/13 12:09', 'YYYY/MM/DD HH24 MI'), to_timestamp('2015/04/14 12:09', 'YYYY/MM/DD HH24 MI'), ‘203200’, ‘mark schmidt’, ‘1234’, TO_DATE('10-OCT-2022','DD-MM-YYYY')), ‘22345’);
+
+--vehicle values(‘141321D’, ‘Mercedes’, ‘C-Class’, ‘2000’, ’blue’, ‘203200’, ‘rented’, ‘vancouver’, ‘Sedan’);
+--customer values(‘0021900’, ‘778 231 2312’, ‘Yeong Oh’, ‘2345 Pog Street, Vancouver’);
+--Reservation values(‘32345’, ‘Sedan’, ‘778 231 2312’, ‘0021900’, to_timestamp('2015/05/12 12:09', 'YYYY/MM/DD HH24 MI'), to_timestamp('2015/06/13 23:09', 'YYYY/MM/DD HH24 MI'));
+insert into, Rentals values(‘102’, ‘141321D’, ‘0021900’, to_timestamp('2015/05/12 12:09', 'YYYY/MM/DD HH24 MI'), to_timestamp('2015/06/13 23:09', 'YYYY/MM/DD HH24 MI'), ‘203200’, ‘Yeong Oh’, ‘1234’, TO_DATE('10-OCT-2022','DD-MM-YYYY')), ‘22345’);
+
+insert into customer
+values(‘34rofp3’, ‘1274340923’, ‘tom schmidt’, ‘4129 vine street, Vancouver’);
+insert into customer
+values(‘34rrere’, ‘1274343443’, ‘mark schmidt’, ‘4345 vine street, Vancouver’);
+insert into customer
+values(‘0021931’, ‘604 418 8129’, ‘Marvin Agonos’, ‘523 Fig Street, Burnaby’);
+insert into customer
+values(‘0021900’, ‘778 231 2312’, ‘Yeong Oh’, ‘2345 Pog Street, Vancouver’);
+insert into customer
+values(‘0013300’, ‘569 231 5233’, ‘Niklas Kemper’, ‘2345 North Street, Vancouver’);
