@@ -1,19 +1,22 @@
 package ca.ubc.cs304.model;
 
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class RentalsModel {
     private final int rid;
     private final String license; ///foreign
     private final String dlicense; ///foreign
-    private final String fromDate;
-    private final String toDate;
+    private final Timestamp fromDate;
+    private final Timestamp toDate;
     private final int odometer;
     private final String cardName;
     private final String cardNo;
-    private final String expDate;
-    private final int confNo;
+    private final Date expDate;
+    private final int confNo; ///foreign
 
-    public RentalsModel(int rid, String license, String dlicense, String fromDate, String toDate, int odometer, String cardName, String cardNo, String expDate, int confNo){
+    public RentalsModel(int rid, String license, String dlicense, Timestamp fromDate, Timestamp toDate, int odometer, String cardName, String cardNo, Date expDate, int confNo){
         this.rid = rid;
         this.license = license;
         this.dlicense = dlicense;
@@ -34,11 +37,11 @@ public class RentalsModel {
     public String getDlicense() {
         return dlicense;
     }
-    public String getFromDate() {
+    public Timestamp getFromDate() {
         return fromDate;
     }
-    public String getToDate() {
-        return toDate;
+    public Timestamp getToDate() {
+        return  toDate;
     }
     public int getOdometer() {
         return odometer;
@@ -49,7 +52,7 @@ public class RentalsModel {
     public String getCardNo() {
         return cardNo;
     }
-    public String getExpDate() {
+    public Date getExpDate() {
         return expDate;
     }
     public int getConfNo() {
