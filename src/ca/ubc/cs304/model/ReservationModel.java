@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 public class ReservationModel {
     private final int confNo;
     private final String license; ///foreign
-    private final String cellphone; ///foreign
     private final String dlicense; ///foreign
     private final Timestamp fromDate;
     private final Timestamp toDate;
@@ -15,7 +14,6 @@ public class ReservationModel {
     public ReservationModel(int confNo, String license, String cellphone, String dlicense, Timestamp fromDate, Timestamp toDate) {
         this.confNo = confNo;
         this.license = license;
-        this.cellphone = cellphone;
         this.dlicense = dlicense;
         this.fromDate = fromDate;
         this.toDate = toDate;
@@ -25,9 +23,6 @@ public class ReservationModel {
     }
     public String getLicense() {
         return license;
-    }
-    public String getCellphone() {
-        return cellphone;
     }
     public String getDlicense() {
         return dlicense;
